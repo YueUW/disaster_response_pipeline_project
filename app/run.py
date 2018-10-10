@@ -40,8 +40,11 @@ def index():
     
     # extract data needed for visuals
     # TODO: Below is an example - modify to extract data for your own visuals
-    genre_counts = df.groupby('genre').count()['message']
-    genre_names = list(genre_counts.index)
+    num_of_categories_counts = df[df.columns[4:]].sum(axis=1).value_counts()
+    num_of_categories = list(df[df.columns[4:]].sum(axis=1).value_counts().index)
+    
+    categories_counts_top_5 = df[df.columns[4:]].sum().sort_values()[-5:]
+    categories_names_top_5 = list(df[df.columns[4:]].sum().sort_values()[-5:].index)
     
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
@@ -49,18 +52,36 @@ def index():
         {
             'data': [
                 Bar(
-                    x=genre_names,
-                    y=genre_counts
+                    x=num_of_categories,
+                    y=num_of_categories_counts
                 )
             ],
 
             'layout': {
-                'title': 'Distribution of Message Genres',
+                'title': 'Distribution of Category Counts for Each Message',
                 'yaxis': {
                     'title': "Count"
                 },
                 'xaxis': {
-                    'title': "Genre"
+                    'title': "Category Counts: How Many Categories Each Message Has"
+                }
+            }
+        }, 
+        {
+            'data': [
+                Bar(
+                    x=categories_names_top_5,
+                    y=categories_counts_top_5
+                )
+            ],
+
+            'layout': {
+                'title': 'Top 5 categories classified',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Category"
                 }
             }
         }
