@@ -1,5 +1,28 @@
 # Disaster Response Pipeline Project
 
+### Motivation:
+This is a data science project on building pipeline to classify messages in disaster into different categories. This project is to deepen my understanding on how to use ETL and machine learning pipelines.
+
+### Files:
+- app
+| - template
+| |- master.html  # main page of web app
+| |- go.html  # classification result page of web app
+|- run.py  # Flask file that runs app
+
+- data
+|- disaster_categories.csv  # data to process 
+|- disaster_messages.csv  # data to process
+|- process_data.py
+|- DisasterResponse.db   # database to save clean data to
+
+- models
+|- train_classifier.py
+|- classifier.pkl  # saved model 
+
+- README.md
+
+
 ### Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
 
@@ -12,3 +35,4 @@
     `python run.py`
 
 3. Go to http://0.0.0.0:3001/
+
